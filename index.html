@@ -13,9 +13,9 @@
             font-style: italic;
             margin: 0;
             padding: 0;
-            background-color: #020208;
-            color: red; /* Text color changed to red */
+            transition: background 0.3s, color 0.3s;
         }
+
         /* Light Mode */
         body.light-mode {
             background-color: #ffffff;
@@ -27,19 +27,18 @@
             background-color: #020208;
             color: red;
         }
+
         h1, h2 {
-            color: rgba(255, 0, 34, 0.911); /* Header color changed to red */
+            color: rgba(255, 0, 34, 0.911);
         }
-        p, ul, table {
-            font-size: 16px;
-            color: rgb(38, 0, 255); /* Text color for paragraphs, lists, and table */
-        }
+
         header {
             text-align: center;
             background-color: #02080c;
-            color: red; /* Header text color changed to red */
+            color: red;
             padding: 20px 10px;
         }
+
         section {
             margin: 20px auto;
             padding: 20px;
@@ -48,53 +47,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            margin-bottom: 10px;
-            color: rgb(0, 26, 255);
-        }
-        img {
-            display: block;
-            margin: 0 auto;
-            border-radius: 50%;
-        }
-        video {
-            display: block;
-            margin: 10px auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            color: rgb(47, 0, 255); /* Table text color changed to red */
-        }
-        table th, table td {
-            border: 1px solid hsla(0, 25%, 94%, 0.796);
-            padding: 8px;
-            text-align: center;
-        }
-        table th {
-            background-color: #080808;
-            color: rgba(255, 0, 0, 0.822); /* Table header text color changed to red */
-        }
-        a {
-            color: rgb(0, 4, 255); /* Link color changed to red */
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #2c3e50;
-            color: red; /* Footer text color changed to red */
-            margin-top: 20px;
-        }
-          /* Toggle Button */
+
+        /* Toggle Button */
         .theme-toggle {
             display: block;
             margin: 20px auto;
@@ -111,22 +65,71 @@
             background-color: #ddd;
             color: black;
         }
+
+        /* Dashboard Navigation */
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px;
+        }
+
+        .dashboard button {
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+
+        body.light-mode .dashboard button {
+            background-color: #ddd;
+            color: black;
+        }
     </style>
 </head>
 <body class="dark-mode">
-  
-</head>
-<body>
 
-    <!-- Title and Introduction Section -->
     <header>
         <h1>Nankya Zaharah</h1>
         <p>Welcome to my personal portfolio! I am a student at Uganda Christian University pursuing a degree in Computer Science.<br>
             I am passionate about programming and web development.</p>
     </header>
-<!-- Toggle Button for Theme -->
+
+    <!-- Dashboard Navigation -->
+    <div class="dashboard">
+        <button onclick="scrollToSection('personal-details')">Personal Details</button>
+        <button onclick="scrollToSection('results')">Results</button>
+        <button onclick="scrollToSection('contact')">Contact</button>
+        <button onclick="scrollToSection('career-goals')">Career Goals</button>
+    </div>
+
+    <!-- Toggle Button for Theme -->
     <button class="theme-toggle" onclick="toggleTheme()">Switch to Light Mode</button>
- <script>
+
+    <section id="personal-details">
+        <h2>Personal Details</h2>
+        <p>Details about personal information.</p>
+    </section>
+
+    <section id="results">
+        <h2>Results</h2>
+        <p>Details about academic results.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Details about how to reach me.</p>
+    </section>
+
+    <section id="career-goals">
+        <h2>Career Goals</h2>
+        <p>Details about career aspirations.</p>
+    </section>
+
+    <script>
         function toggleTheme() {
             const body = document.body;
             body.classList.toggle('light-mode');
@@ -154,7 +157,12 @@
                 button.textContent = savedTheme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode";
             }
         }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
+
     <!-- Personal Details Section -->
     <section>
         <h2>Personal Details</h2>
