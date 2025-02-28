@@ -1,3 +1,5 @@
+
+      
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,119 +7,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nankya Zaharah's Portfolio</title>
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --header-bg: #f4f4f4;
-            --header-text: #333;
-            --section-bg: #eaeaea;
-            --link-color: #0000ff;
-            --table-header-bg: #ddd;
-            --table-border: #ccc;
-        }
-        
-        [data-theme="dark"] {
-            --bg-color: #020208;
-            --text-color: red;
-            --header-bg: #02080c;
-            --header-text: red;
-            --section-bg: #094b2c2c;
-            --link-color: rgb(0, 4, 255);
-            --table-header-bg: #080808;
-            --table-border: hsla(0, 25%, 94%, 0.796);
-        }
-        
+        /* General Styling */
         body {
             font-family: Arial, sans-serif;
+            font-style: italic;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #020208;
+            color: red; /* Text color changed to red */
+        }
+        /* Light Mode */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #000000;
         }
         
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #020208;
+            color: red;
+        }
+        h1, h2 {
+            color: rgba(255, 0, 34, 0.911); /* Header color changed to red */
+        }
+        p, ul, table {
+            font-size: 16px;
+            color: rgb(38, 0, 255); /* Text color for paragraphs, lists, and table */
+        }
         header {
             text-align: center;
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 20px;
+            background-color: #02080c;
+            color: red; /* Header text color changed to red */
+            padding: 20px 10px;
         }
-        
         section {
             margin: 20px auto;
             padding: 20px;
             max-width: 800px;
-            background: var(--section-bg);
+            background: #094b2c2c;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            color: rgb(0, 26, 255);
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+        video {
+            display: block;
+            margin: 10px auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            color: rgb(47, 0, 255); /* Table text color changed to red */
+        }
+        table th, table td {
+            border: 1px solid hsla(0, 25%, 94%, 0.796);
+            padding: 8px;
+            text-align: center;
+        }
+        table th {
+            background-color: #080808;
+            color: rgba(255, 0, 0, 0.822); /* Table header text color changed to red */
+        }
         a {
-            color: var(--link-color);
+            color: rgb(0, 4, 255); /* Link color changed to red */
             text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
         }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-        
-        table th, table td {
-            border: 1px solid var(--table-border);
-            padding: 8px;
-            text-align: center;
-        }
-        
-        table th {
-            background-color: var(--table-header-bg);
-        }
-        
         footer {
             text-align: center;
             padding: 10px;
-            background-color: var(--header-bg);
-            color: var(--header-text);
+            background-color: #2c3e50;
+            color: red; /* Footer text color changed to red */
             margin-top: 20px;
         }
-        
+          /* Toggle Button */
         .theme-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px;
-            cursor: pointer;
-            background: var(--header-bg);
-            color: var(--header-text);
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #444;
+            color: white;
             border: none;
+            cursor: pointer;
             border-radius: 5px;
+        }
+
+        body.light-mode .theme-toggle {
+            background-color: #ddd;
+            color: black;
         }
     </style>
 </head>
+<body class="dark-mode">
+  
+</head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
-    
+
+    <!-- Title and Introduction Section -->
     <header>
         <h1>Nankya Zaharah</h1>
-        <p>Welcome to my personal portfolio! I am a student at Uganda Christian University pursuing a degree in Computer Science.</p>
+        <p>Welcome to my personal portfolio! I am a student at Uganda Christian University pursuing a degree in Computer Science.<br>
+            I am passionate about programming and web development.</p>
     </header>
-    
+<!-- Toggle Button for Theme -->
+    <button class="theme-toggle" onclick="toggleTheme()">Switch to Light Mode</button>
+ <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            body.classList.toggle('dark-mode');
+            
+            // Change button text based on the theme
+            const button = document.querySelector('.theme-toggle');
+            if (body.classList.contains('light-mode')) {
+                button.textContent = "Switch to Dark Mode";
+                localStorage.setItem('theme', 'light');
+            } else {
+                button.textContent = "Switch to Light Mode";
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme from localStorage
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.classList.remove('light-mode', 'dark-mode');
+                document.body.classList.add(savedTheme + '-mode');
+                
+                const button = document.querySelector('.theme-toggle');
+                button.textContent = savedTheme === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode";
+            }
+        }
+    </script>
+    <!-- Personal Details Section -->
     <section>
         <h2>Personal Details</h2>
         <ul>
             <li><strong>Full Name:</strong> Nankya Zaharah</li>
+            <li><strong>Student Number:</strong> S23B23/082</li>
             <li><strong>Course and Year:</strong> Computer Science, Year 2</li>
-            <li><strong>Hobbies:</strong> Movies, Music, Food, Friends</li>
+            <li><strong>Hobbies and Interests:</strong> Movies, Music, Food, Hanging out with Friends</li>
         </ul>
     </section>
-    
+
+    <!-- Profile Picture Section -->
     <section>
         <h2>Profile Picture</h2>
         <img src="IMG-20241229-WA0169.jpg" alt="Nankya Zaharah" width="300" height="300">
     </section>
-    
+
+    <!-- Embedded Hobby Video Section -->
+    <section>
+        <h2>My Hobby: Hanging out With Friends</h2>
+        <!-- Option 1: Embedded video -->
+        <video controls width="400" height="240">
+            <source src="VID-20241229-WA0191.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+        
+    <!-- Year 1 Semester 1 Results Table -->
     <section>
         <h2>Year 1 Semester 1 Results</h2>
         <table>
@@ -126,6 +191,7 @@
                     <th>Course Code</th>
                     <th>Course Title</th>
                     <th>Grade</th>
+                    <th>Credit Units</th>
                 </tr>
             </thead>
             <tbody>
@@ -133,40 +199,73 @@
                     <td>ICT1103</td>
                     <td>Fundamentals of Computing</td>
                     <td>5</td>
+                    <td>4</td>
                 </tr>
                 <tr>
                     <td>ICT1102</td>
                     <td>Essential Hardware and Software</td>
                     <td>5</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>LNG1101</td>
+                    <td>Writing and Study Skills</td>
+                    <td>5</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>MTH1102</td>
+                    <td>Discrete Mathematics</td>
+                    <td>5</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>CSC1101</td>
+                    <td>Structured Programming</td>
+                    <td>4.5</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>TBS1103</td>
+                    <td>Understanding the Old Testament</td>
+                    <td>4.5</td>
+                    <td>3</td>
                 </tr>
             </tbody>
         </table>
     </section>
-    
+
+    <!-- Links and Navigation Section -->
     <section>
-        <h2>Contact</h2>
+        <h2>Links and Navigation</h2>
         <ul>
-            <li><strong>Email:</strong> <a href="mailto:zaharahn126@gmail.com">zaharahn126@gmail.com</a></li>
-            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nankya-zaharah-534a6b246/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.example.com">https://chatgpt.com/</a></li>
+            <li><a href="https://www.ucu.ac.ug">https://alpha.ucu.ac.ug/</a></li>
         </ul>
     </section>
-    
+
+    <!-- Contact Information Section -->
+    <section>
+        <h2>Contact Information</h2>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:zaharahn126@gmail.com">zaharahn126@gmail.com</a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nankya-zaharah-534a6b246/" target="_blank">https://www.linkedin.com/in/nankya-zaharah-534a6b246/</a></li>
+            <li><strong>GitHub:</strong> <a href="https://github.com/zahrazinda126/" target="_blank">https://github.com/zahrazinda126/</a></li>
+        </ul>
+    </section>
+
+    <!-- Career Goals Section -->
+    <section>
+        <h2>My Career Goals</h2>
+        <p>As a Computer Science student, I aim to pursue a career in software development, specifically in web and mobile application development.<br>
+            I hope to contribute to innovative projects that solve real-world problems, with a focus on improving accessibility and user experience.</p>
+    </section>
+
+    <!-- Footer Section -->
     <footer>
+        <hr>
         <p>&copy; 2025 Nankya Zaharah</p>
     </footer>
-    
-    <script>
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", newTheme);
-            localStorage.setItem("theme", newTheme);
-        }
-        
-        (function() {
-            const savedTheme = localStorage.getItem("theme") || "light";
-            document.documentElement.setAttribute("data-theme", savedTheme);
-        })();
-    </script>
+
 </body>
 </html>
